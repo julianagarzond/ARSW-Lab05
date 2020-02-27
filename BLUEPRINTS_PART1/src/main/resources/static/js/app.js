@@ -1,6 +1,5 @@
 var Blueprints =(function () {
 
-    var getBlueprints = function(){
-
-    }
+    function getBluerints(){
+         getBlueprintsByNameAndAuthor();}
 } ) ();
