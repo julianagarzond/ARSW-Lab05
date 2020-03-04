@@ -1,6 +1,8 @@
 # Blueprint Management 3 - Heavy Client
 
 ## Description
+![Mock](https://github.com/julianagarzond/ARSW-Lab05/blob/master/BLUEPRINTS_PART1/img/mock.png)
+
 
 - When you press 'Get blueprints', consult the plans of the user given in the form. For now, if the query generates an error, nothing will simply be displayed. 
 - When making a successful query, a message should be displayed that includes the author's name, and a table with: the name of each author's plan, the number of points of the author, and a button to open it. In the end, the total points of all plans must be shown (suppose, for example, that the application has a payment model that requires such information). 
@@ -79,3 +81,7 @@ To the app.js module add an operation that, given the name of an author, and the
 - Once the application works (front-end only), make a module (call it apiclient) that has the same operations of the apimock, but for the same use real data consulted from the REST API. For the above, review how to make GET requests with jQuery, and how the callback scheme is handled in this context.
 - Modify the app.js code so that it is possible to switch between the apimock and the apiclient with just one line of code.
 - Review the documentation and examples of Bootstrap styles (already included in the exercise), add the necessary elements to the page to make it more colorful, and closer to the mock given at the beginning of the statement.
+
+## How to run
+
+- To run this program you will need to clone or download this repository and run the main class BlueprintsAPIApplication.java
