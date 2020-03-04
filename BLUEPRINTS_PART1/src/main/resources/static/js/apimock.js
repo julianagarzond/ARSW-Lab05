@@ -1,4 +1,4 @@
- apimock = (function () {
+ var apimock = (function () {
 
     var mockdata = [];
 
