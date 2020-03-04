@@ -12,13 +12,17 @@
 <body>
 <h1> Blueprints </h1>
 <input type ="text" id ="textAuthor" value= "Author">
-<input type="button"  id ="buttonBlueprints" value="Get Blueprints">
-<table>
+<button type="button"  id ="buttonBlueprints" onclick="app.getBlueprintsAuthor(textAuthor.value);" > Get Blueprints </button>  <br><br>
+<table id="table">
+    <thead>
     <tr>
         <th>Blueprint name</th>
         <th>Number of points</th>
         <td><input type="button"  id ="openButton" value="Open"></td>
     </tr>
+    </thead>
+    <tbody>
+    </tbody>
 </table>
 
 <script src="js/apimock.js"></script>
