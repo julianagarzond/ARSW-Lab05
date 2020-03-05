@@ -17,6 +17,7 @@
             top: 10%;
         }
         div#bodyDiv {
+            overflow: auto;
             margin-left: 5%;
             margin-top: 2%;
         }
@@ -41,11 +42,17 @@
             background-color: black;
             color: white;
         }
+        .divCanv{
+            float: right;
+        }
     </style>
 </head>
-<body>
+<body onLoad="app.init()">
 <div id="bodyDiv">
     <h1> Blueprints </h1>
+    <div class="divCanv">
+        <canvas id="canvas" width="500" height="500" > </canvas>
+    </div>
     <input type="text" id="textAuthor">
     <button type="button"  id="buttonBlueprints" onclick="app.getBlueprintsByAuthor(textAuthor.value);" > Get Blueprints </button>  <br><br>
     <table id="table">
@@ -63,8 +70,6 @@
     <div id="totalPoints">
         <h2></h2>
     </div>
-
-    <canvas id="canvas" width="500" height="500" > </canvas>
 </div>
 
 </body>

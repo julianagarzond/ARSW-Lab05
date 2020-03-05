@@ -1,7 +1,7 @@
 var api = apiclient;
 var app = (function() {
     var _author;
-
+    var _flag;
     var _map = function (list){
         return mapping = list.map(function(blueprint){
             return {name:blueprint.name, pointsCount:blueprint.points.length};
@@ -31,15 +31,17 @@ var app = (function() {
     }
 
     var getBlueprintsByNameAndAuthor = function(author,name){
+            _flag=true;
             _author=author;
             api.getBlueprintsByNameAndAuthor(name,author,_draw);
     }
 
     var getBlueprintsByAuthor = function (author){
-            _author=author;
+
             if(author == null || author == "" ){
                 alert("invalid author");
             } else {
+                _author=author;
                 api.getBlueprintsByAuthor(author, _createTable);
             }
     }
@@ -49,7 +51,6 @@ var app = (function() {
          _totalPoints(blueprints);
           $("#table > tbody").empty();
           blueprints.map(function(bp){
-             console.log(bp);
              $("#table > tbody").append(
                             "<tr> <td>" +
                             bp.name +
@@ -69,9 +70,31 @@ var app = (function() {
      }
 
 
-      return{
-      getBlueprintsByAuthor : getBlueprintsByAuthor , getBlueprintsByNameAndAuthor :getBlueprintsByNameAndAuthor
-      } ;
+
+
+     return{
+         init:function(){
+            var canvas = document.getElementById("canvas"),
+            context = canvas.getContext("2d");
+
+            _flag =false;
+            if(window.PointerEvent) {
+                canvas.addEventListener("pointerdown", function(event){
+                alert('pointerdown at '+event.pageX+','+event.pageY);
+                });
+            }
+            else {
+                canvas.addEventListener("mousedown", function(event){
+                alert('mousedown at '+event.clientX+','+event.clientY);
+                });
+            }
+
+         },
+         getBlueprintsByAuthor : getBlueprintsByAuthor,
+         getBlueprintsByNameAndAuthor :getBlueprintsByNameAndAuthor
+
+     };
+
 
 
 
