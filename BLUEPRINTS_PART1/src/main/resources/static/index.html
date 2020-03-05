@@ -9,14 +9,45 @@
     <script type="text/javascript" src="js/apimock.js"></script>
     <script type="text/javascript" src="js/apiclient.js"></script>
     <script type="text/javascript" src="js/app.js"></script>
-    <link rel="stylesheet"
-      href="/webjars/bootstrap/4.1.2/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="/webjars/bootstrap/4.1.2/css/bootstrap.min.css" />
+    <style>
+        canvas{
+            border:1px solid #000000;
+            right: 5%;
+            top: 10%;
+        }
+        div#bodyDiv {
+            margin-left: 5%;
+            margin-top: 2%;
+        }
+        table {
+            width: 40%;
+        }
+        table, th, td {
+            border: 1px solid black;
+            border-collapse: collapse;
+        }
+        th, td {
+            padding: 8px;
+            text-align: left;
+        }
+        table#table tr:nth-child(even) {
+            background-color: #AAAAAA;
+        }
+        table#table tr:nth-child(odd) {
+            background-color: #eee;
+        }
+        table#table th {
+            background-color: black;
+            color: white;
+        }
+    </style>
 </head>
 <body>
-<div>
+<div id="bodyDiv">
     <h1> Blueprints </h1>
-    <input type ="text" id ="textAuthor">
-    <button type="button"  id ="buttonBlueprints" onclick="app.getBlueprintsByAuthor(textAuthor.value);" > Get Blueprints </button>  <br><br>
+    <input type="text" id="textAuthor">
+    <button type="button"  id="buttonBlueprints" onclick="app.getBlueprintsByAuthor(textAuthor.value);" > Get Blueprints </button>  <br><br>
     <table id="table">
         <thead>
         <tr>
@@ -32,8 +63,9 @@
     <div id="totalPoints">
         <h2></h2>
     </div>
+
+    <canvas id="canvas" width="500" height="500" > </canvas>
 </div>
 
-<canvas id="canvas" width="500" height="500" style="border:1px solid #000000;"> </canvas>
 </body>
 </html>
