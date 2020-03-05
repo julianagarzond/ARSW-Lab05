@@ -1,5 +1,9 @@
 # Blueprint Management 3 - Heavy Client
 
+## Contributors
+- Eduardo Ocampo
+- Juliana Garzón
+
 ## Description
 ![Mock](https://github.com/julianagarzond/ARSW-Lab05/blob/master/BLUEPRINTS_PART1/img/mock.png)
 
