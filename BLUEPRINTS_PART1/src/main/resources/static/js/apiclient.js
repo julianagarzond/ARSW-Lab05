@@ -3,7 +3,7 @@ apiclient = (function() {
 
     return {
         getBlueprintsByAuthor: function(author, callback) {
-            $.ajax({
+            jQuery.get({
                 dataType: "json",
                 url: "http://localhost:8080/blueprints/"+author,
                 success: function (data) {
@@ -13,7 +13,7 @@ apiclient = (function() {
         },
         getBlueprintsByNameAndAuthor: function( name, author, callback) {
 
-            $.ajax({
+            jQuery.get({
                 dataType: "json",
                 url: "http://localhost:8080/blueprints/"+author+"/"+name,
                 success: function (data) {

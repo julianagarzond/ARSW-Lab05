@@ -1,7 +1,10 @@
 var api = apiclient;
 var app = (function() {
+    var blueprint ={author:null , points:[] , name: null}
+    var memory=[];
     var _author;
     var _flag;
+    var _blueprints;
     var _map = function (list){
         return mapping = list.map(function(blueprint){
             return {name:blueprint.name, pointsCount:blueprint.points.length};
@@ -9,15 +12,19 @@ var app = (function() {
     }
 
     var _draw= function(blueprints){
-        var start =blueprints.points[0];
-        $("#canvas").text("Blueprint:" +blueprints.name);
+
+        blueprint=blueprints;
+        memory.map(function(element){
+              blueprint.points.push(element)});
+        var start =blueprint.points[0];
+        $("#canvas").text("Blueprint:" +blueprint.name);
         var c = document.getElementById("canvas");
         var ctx = c.getContext("2d");
         ctx.clearRect(0,0,500,500);
         ctx.beginPath();
         ctx.strokeStyle= 'blue';
         ctx.moveTo(start.x,start.y);
-        blueprints.points.map(function(point){
+        blueprint.points.map(function(point){
             ctx.lineTo(point.x,point.y);
         })
         ctx.stroke();
@@ -31,7 +38,6 @@ var app = (function() {
     }
 
     var getBlueprintsByNameAndAuthor = function(author,name){
-            _flag=true;
             _author=author;
             api.getBlueprintsByNameAndAuthor(name,author,_draw);
     }
@@ -77,15 +83,40 @@ var app = (function() {
             var canvas = document.getElementById("canvas"),
             context = canvas.getContext("2d");
 
+            _author=null;
+
+
             _flag =false;
             if(window.PointerEvent) {
                 canvas.addEventListener("pointerdown", function(event){
-                alert('pointerdown at '+event.pageX+','+event.pageY);
-                });
+                    var rect= canvas.getBoundingClientRect();
+
+                    var posX= Math.round((event.pageX-rect.left) / (rect.right - rect.left)*canvas.width);
+                    var posY= Math.round((event.pageY- rect.top) /(rect.bottom-rect.top)*canvas.height);
+                    blueprint.points.push({x:posX,y:posY});
+                    memory.push({x:posX,y:posY});
+                    _draw(blueprint);
+
+
+
+
+                    //alert('pointerdown at '+posX+','+posY);
+                    console.log(blueprint);
+
+
+
+
+                    });
+
+
             }
             else {
                 canvas.addEventListener("mousedown", function(event){
-                alert('mousedown at '+event.clientX+','+event.clientY);
+                 var rect= canvas.getBoundingClientRect();
+                 var x= Math.round((event.clientX-rect.left) / (rect.right - rect.left)*canvas.width);
+                 var y= Math.round((event.clientY- rect.top) /(rect.bottom-rect.top)*canvas.height);
+
+                alert('mousedown at '+x+','+y);
                 });
             }
 
