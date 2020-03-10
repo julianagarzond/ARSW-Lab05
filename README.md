@@ -1,4 +1,4 @@
-# Blueprint Management 3 - Heavy Client
+# Blueprint Management 3&4 - Heavy Client
 
 ## Contributors
 - Eduardo Ocampo
