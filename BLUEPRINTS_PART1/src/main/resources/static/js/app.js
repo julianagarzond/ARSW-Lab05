@@ -38,6 +38,7 @@ var app = (function() {
     }
 
     var getBlueprintsByNameAndAuthor = function(author,name){
+            memory = [];
             _author=author;
             api.getBlueprintsByNameAndAuthor(name,author,_draw);
     }
@@ -75,6 +76,45 @@ var app = (function() {
 
      }
 
+     var saveUpdate = function(){
+
+        if(blueprint!=null){
+
+            return $.ajax({
+                        url: "/blueprints/"+ blueprint.author +"/"+blueprint.name,
+                        type: 'PUT',
+                        data: JSON.stringify(blueprint),
+                        contentType: "application/json"
+
+            })
+        }
+       }
+
+       var createBlueprint = function(name){
+            blueprint.push({name:name});
+            console.log(blueprint);
+            return $.ajax({
+                                    url: "/blueprints/"+ blueprint.author +"/"+blueprint.name,
+                                    type: 'PUT',
+                                    data: JSON.stringify(blueprint),
+                                    contentType: "application/json"
+
+                        })
+
+
+       }
+
+       var openBlueprint= function(){
+           document.getElementById("popupForm").style.display="block";
+           var canvas = document.getElementById("canvas"),
+           context = canvas.getContext("2d");
+           context.clearRect(0,0,canvas.width,canvas.height);
+           }
+       var closeBlueprint =function(){
+             document.getElementById("popupForm").style.display="none";
+       }
+
+
 
 
 
@@ -98,14 +138,6 @@ var app = (function() {
                     _draw(blueprint);
 
 
-
-
-                    //alert('pointerdown at '+posX+','+posY);
-                    console.log(blueprint);
-
-
-
-
                     });
 
 
@@ -122,7 +154,11 @@ var app = (function() {
 
          },
          getBlueprintsByAuthor : getBlueprintsByAuthor,
-         getBlueprintsByNameAndAuthor :getBlueprintsByNameAndAuthor
+         getBlueprintsByNameAndAuthor :getBlueprintsByNameAndAuthor,
+         saveUpdate :saveUpdate,
+         createBlueprint:createBlueprint,
+         closeBlueprint:closeBlueprint,
+         openBlueprint:openBlueprint
 
      };
 
